@@ -6,7 +6,7 @@ This section explains key supporting classes used by the sample app and how they
 
 The SecurityTagLib exposes simple view-level tags for common checks used by GSP pages, e.g. `app:loggedIn`, `app:ifNotLoggedIn`, `app:hasRole`, and `app:currentUser`.
 
-include::../snippets/grails-app/taglib/com/mondel/example/SecurityTagLib.groovy[]
+include::../snippets/grails-app/taglib/com/grails/example/SecurityTagLib.groovy[]
 
 Explanation:
 
@@ -18,7 +18,7 @@ Explanation:
 
 The KeycloakAuthoritiesMapper maps roles from the Keycloak ID token into Spring Security `GrantedAuthority` entries used by `@PreAuthorize` checks.
 
-include::../snippets/src/main/groovy/com/mondel/example/KeycloakAuthoritiesMapper.groovy[]
+include::../snippets/src/main/groovy/com/grails/example/KeycloakAuthoritiesMapper.groovy[]
 
 Explanation:
 
@@ -30,7 +30,7 @@ Explanation:
 
 SecurityConfig wires the OAuth2 login, logout handler, and applies the `userAuthoritiesMapper` to the user info endpoint so the Keycloak roles are applied.
 
-include::../snippets/src/main/groovy/com/mondel/example/SecurityConfig.groovy[]
+include::../snippets/src/main/groovy/com/grails/example/SecurityConfig.groovy[]
 
 Explanation:
 

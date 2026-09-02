@@ -10,6 +10,7 @@ include::./postgresql.adoc[]
 include::./configure-grails.adoc[]
 include::./keycloak-setup.adoc[]
 include::./running-the-app.adoc[]
+include::./snippets.adoc[]
 
 == What you'll need
 

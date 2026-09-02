@@ -1,0 +1,42 @@
+== Code snippets and explanations
+
+This section explains key supporting classes used by the sample app and how they interact with Spring Security and Keycloak.
+
+=== SecurityTagLib
+
+The SecurityTagLib exposes simple view-level tags for common checks used by GSP pages, e.g. `app:loggedIn`, `app:ifNotLoggedIn`, `app:hasRole`, and `app:currentUser`.
+
+include::../snippets/grails-app/taglib/com/grails/example/SecurityTagLib.groovy[]
+
+Explanation:
+
+* `loggedIn` and `ifNotLoggedIn` check the Spring SecurityContext for an authenticated principal and render their body accordingly.
+* `hasRole` normalizes the supplied `role` attribute and checks the authentication's authorities to conditionally render content.
+* `currentUser` extracts common user attributes from the OIDC principal (preferredUsername, givenName, familyName, email) and passes them to the body.
+
+=== KeycloakAuthoritiesMapper
+
+The KeycloakAuthoritiesMapper maps roles from the Keycloak ID token into Spring Security `GrantedAuthority` entries used by `@PreAuthorize` checks.
+
+include::../snippets/src/main/groovy/com/grails/example/KeycloakAuthoritiesMapper.groovy[]
+
+Explanation:
+
+* Reads the configured OAuth2 client id to look up `resource_access.<clientId>.roles` in the ID token claims.
+* Converts each Keycloak role into a `ROLE_<NAME>` SimpleGrantedAuthority so Grails/Spring Security can use `hasRole('ROLE_NAME')` checks.
+* Resilient to missing claims; only maps roles when present.
+
+=== SecurityConfig
+
+SecurityConfig wires the OAuth2 login, logout handler, and applies the `userAuthoritiesMapper` to the user info endpoint so the Keycloak roles are applied.
+
+include::../snippets/src/main/groovy/com/grails/example/SecurityConfig.groovy[]
+
+Explanation:
+
+* Configures public assets and common public routes as permitAll(), requiring authentication for everything else.
+* Configures `oauth2Login` and sets `userInfo.userAuthoritiesMapper(keycloakAuthoritiesMapper)` so authorities mapping runs when the user info is processed.
+* Uses an `OidcClientInitiatedLogoutSuccessHandler` to handle federated logout and redirect back to the app.
+
+
+

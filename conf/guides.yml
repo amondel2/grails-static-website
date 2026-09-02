@@ -9,6 +9,42 @@ defaults:
   tags: []
 
 guides:
+  - name: 'grails-keycloak'
+    title: 'Keycloak Integration with Grails 8'
+    subtitle: 'Authenticate and authorize Grails 8 apps with Keycloak (OIDC)'
+    authors:
+      - 'amondel2'
+    category: 'Security'
+    publicationDate: '2026-09-02'
+    versions:
+      '8':
+        sourcePath: guides/grails-keycloak/v8
+        publicationDate: '2026-09-02'
+        tags:
+          - 'grails8'
+          - 'keycloak'
+          - 'security'
+          - 'openid-connect'
+        sampleRef:
+          repo: 'grails-guides/grails-keycloak-example'
+          branch: 'grails8'
+        toc:
+          gettingStarted:
+            title: Getting Started
+            requirements: What you will need
+            howto: How to Complete the Guide
+          postgresql:
+            title: PostgreSQL Setup
+          configureGrails:
+            title: Configure the Grails Application
+          keycloakSetup:
+            title: Configure Keycloak
+          runningTheApp:
+            title: Run the Application
+          helpWithGrails:
+            title: Do You Need Help With Grails?
+
+  
   - name: 'grails-jobrunr'
     title: 'Background Jobs with JobRunr in Grails 8'
     subtitle: 'Run durable background work safely with JobRunr OSS, Grails transactions, and explicit storage wiring.'

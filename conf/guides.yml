@@ -25,6 +25,9 @@ guides:
           - 'keycloak'
           - 'security'
           - 'openid-connect'
+        sampleRef:
+          repo: 'grails-guides/grails-keycloak-example'
+          branch: 'grails8'
         toc:
           gettingStarted:
             title: Getting Started
